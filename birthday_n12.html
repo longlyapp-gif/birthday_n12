@@ -220,7 +220,43 @@ body {
 /* ========== NEWSPAPER THEME (<=1984) ========== */
 .theme-newspaper {
   background-color: #f4edd4;
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="400" height="400" filter="url(%23n)" opacity="0.08"/></svg>');
+  position: relative;
+}
+.theme-newspaper::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background:
+    /* vignette - dark edges like old paper */
+    radial-gradient(ellipse at center, transparent 50%, rgba(120,100,60,0.25) 100%),
+    /* coffee stain top-right */
+    radial-gradient(circle at 85% 12%, rgba(160,120,60,0.12) 0%, transparent 8%),
+    /* coffee stain bottom-left */
+    radial-gradient(circle at 15% 85%, rgba(140,110,50,0.1) 0%, transparent 10%),
+    /* subtle aged spots */
+    radial-gradient(circle at 30% 40%, rgba(130,100,50,0.06) 0%, transparent 5%),
+    radial-gradient(circle at 70% 60%, rgba(130,100,50,0.06) 0%, transparent 4%),
+    radial-gradient(circle at 50% 20%, rgba(130,100,50,0.05) 0%, transparent 6%);
+}
+.theme-newspaper::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="300" height="300" filter="url(%23paper)" opacity="0.12"/></svg>');
+  mix-blend-mode: multiply;
+}
+.theme-newspaper .content-area,
+.theme-newspaper .header-bar,
+.theme-newspaper .nav-bar,
+.theme-newspaper .info-bar {
+  position: relative;
+  z-index: 1;
 }
 
 .theme-newspaper .header-bar {
@@ -956,7 +992,7 @@ const DATA = {
     imgMovie: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400&h=300&fit=crop",
     imgTv: "",
     imgEurovision: "",
-    imgHeadline: "https://images.unsplash.com/photo-1504711434969-e33886168d5c?w=800&h=500&fit=crop"
+    imgHeadline: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800&h=500&fit=crop"
   },
   1948: {
     headline: "הוכרזה מדינת ישראל! בן גוריון מכריז על עצמאות", headlineDate: "14.5.1948",
@@ -1038,9 +1074,9 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "",
-    imgHeadline: "https://images.unsplash.com/photo-1504711434969-e33886168d5c?w=800&h=500&fit=crop"
+    imgHeadline: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800&h=500&fit=crop"
   },
   1973: {
     headline: "מלחמת יום הכיפורים - תקיפה מפתיעה על ישראל", headlineDate: "6.10.1973",
@@ -1052,7 +1088,7 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=300&fit=crop",
     imgHeadline: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&h=500&fit=crop"
   },
@@ -1080,7 +1116,7 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1511735111819-9a3f7709049c?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1501612780327-45045538702b?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=300&fit=crop",
     imgHeadline: "https://images.unsplash.com/photo-1529243856184-fd5465488984?w=800&h=500&fit=crop"
   },
@@ -1096,7 +1132,7 @@ const DATA = {
     imgMovie: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400&h=300&fit=crop",
     imgTv: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400&h=300&fit=crop",
-    imgHeadline: "https://images.unsplash.com/photo-1504711434969-e33886168d5c?w=800&h=500&fit=crop"
+    imgHeadline: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800&h=500&fit=crop"
   },
   1982: {
     headline: "מלחמת לבנון הראשונה - צה\"ל פולש ללבנון", headlineDate: "6.6.1982",
@@ -1108,7 +1144,7 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=300&fit=crop",
     imgHeadline: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&h=500&fit=crop"
   },
@@ -1136,7 +1172,7 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1501612780327-45045538702b?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400&h=300&fit=crop",
     imgHeadline: "https://images.unsplash.com/photo-1568667256549-094345857637?w=800&h=500&fit=crop"
   },
@@ -1152,7 +1188,7 @@ const DATA = {
     imgMovie: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=300&fit=crop",
     imgTv: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=300&fit=crop",
-    imgHeadline: "https://images.unsplash.com/photo-1504711434969-e33886168d5c?w=800&h=500&fit=crop"
+    imgHeadline: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800&h=500&fit=crop"
   },
   1990: {
     headline: "עלייה המונית מברית המועצות - מיליון עולים", headlineDate: "1990",
@@ -1178,7 +1214,7 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=300&fit=crop",
     imgHeadline: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&h=500&fit=crop"
   },
@@ -1206,7 +1242,7 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1501612780327-45045538702b?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=300&fit=crop",
     imgHeadline: "https://images.unsplash.com/photo-1568667256549-094345857637?w=800&h=500&fit=crop"
   },
@@ -1222,7 +1258,7 @@ const DATA = {
     imgMovie: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400&h=300&fit=crop",
     imgTv: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400&h=300&fit=crop",
-    imgHeadline: "https://images.unsplash.com/photo-1504711434969-e33886168d5c?w=800&h=500&fit=crop"
+    imgHeadline: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800&h=500&fit=crop"
   },
   2003: {
     headline: "מלחמת עיראק - טילי סקאד על ישראל", headlineDate: "3.2003",
@@ -1234,7 +1270,7 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=300&fit=crop",
     imgHeadline: "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&h=500&fit=crop"
   },
@@ -1262,7 +1298,7 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1501612780327-45045538702b?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=300&fit=crop",
     imgHeadline: "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=800&h=500&fit=crop"
   },
@@ -1278,7 +1314,7 @@ const DATA = {
     imgMovie: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=300&fit=crop",
     imgTv: "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400&h=300&fit=crop",
-    imgHeadline: "https://images.unsplash.com/photo-1504711434969-e33886168d5c?w=800&h=500&fit=crop"
+    imgHeadline: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800&h=500&fit=crop"
   },
   2010: {
     headline: "המשט לעזה - 9 פעילים טורקים נהרגים", headlineDate: "31.5.2010",
@@ -1290,7 +1326,7 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=300&fit=crop",
     imgHeadline: "https://images.unsplash.com/photo-1529243856184-fd5465488984?w=800&h=500&fit=crop"
   },
@@ -1318,7 +1354,7 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=300&fit=crop",
     imgHeadline: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&h=500&fit=crop"
   },
@@ -1346,9 +1382,9 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1511735111819-9a3f7709049c?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=300&fit=crop",
-    imgHeadline: "https://images.unsplash.com/photo-1504711434969-e33886168d5c?w=800&h=500&fit=crop"
+    imgHeadline: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=800&h=500&fit=crop"
   },
   2020: {
     headline: "מגפת הקורונה - סגרים ברחבי הארץ", headlineDate: "3.2020",
@@ -1360,7 +1396,7 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "",
     imgHeadline: "https://images.unsplash.com/photo-1529243856184-fd5465488984?w=800&h=500&fit=crop"
   },
@@ -1388,7 +1424,7 @@ const DATA = {
     imgSongIL: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=400&h=300&fit=crop",
     imgSongWorld: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=300&fit=crop",
     imgMovie: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=300&fit=crop",
-    imgTv: "https://images.unsplash.com/photo-1593078166039-c9878df5c2ed?w=400&h=300&fit=crop",
+    imgTv: "https://images.unsplash.com/photo-1461151304267-38535e780c79?w=400&h=300&fit=crop",
     imgEurovision: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400&h=300&fit=crop",
     imgHeadline: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&h=500&fit=crop"
   },
